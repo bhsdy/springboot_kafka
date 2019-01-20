@@ -1,0 +1,26 @@
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka/
+server:
+  port: 8666
+spring:
+  application:
+    name: kafka-producer
+#    生产者
+  kafka:
+    bootstrapServers: 192.168.72.128:9092
+    producer:
+      retries: 0
+#        每次发送消息的量
+      batchSize: 16384
+      bufferMemory: 33554432
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+          
+logging:
+  file: D:\logback\${spring.application.name}-${server.port}.log
+swagger2:
+  enable: true

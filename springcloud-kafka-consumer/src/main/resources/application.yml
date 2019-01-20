@@ -1,0 +1,28 @@
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka/
+server:
+  port: 8665
+spring:
+  application:
+    name: kafka-consumer
+#  消费者
+  kafka:
+    bootstrapServers: 192.168.72.128:9092
+#  制定默认消费者group id
+    consumer:
+      groupId: consumer-group
+      autoOffsetReset: earliest
+      enableAutoCommit: true
+      autoCommitInterval: 100
+#   制定消息key和消息体的编码的编解码方式
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+          
+logging:
+  file: D:\logback\${spring.application.name}-${server.port}.log
+swagger2:
+  enable: true
